@@ -1,0 +1,98 @@
+body {
+    background-color: #2d0000;
+    color: #ffaf2e;
+    padding-bottom: 50px;
+}
+
+#heading {
+    padding: 0px 0px 0px 15px;
+    background-color: #fff4b0;
+    color: #fff4b0;
+    box-shadow: 0px 10px 8px 10px;
+}
+
+#heading > nav {
+    display: inline-block;
+    font-family: 'Grenze Gotisch', cursive;
+    font-size: 35px;
+    height: 50px;
+    background-color: #b8760b;
+    padding: 5px 20px 0px 0px;
+    color: #ffe648;
+}
+
+.menuitem {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.menuitem > a {
+    text-decoration: none;
+    color: #fff4b0;
+}
+
+.menuitem > a:visited {
+    text-decoration: none;
+    color: #fff4b0;
+}
+
+.menuitem > a:hover {
+    text-decoration: none;
+    color: #c6ac05;
+}
+
+.menuitem > a:active {
+    text-decoration: none;
+    color: #fff4b0;
+}
+
+h1 {
+    font-family: 'Grenze Gotisch', cursive;
+    font-size: 80px;
+    color: #b8760b;
+}
+
+p > a {
+    text-decoration: none;
+    color: #b8760b;
+}
+
+p > a:visited {
+    text-decoration: none;
+    color: #b8760b;
+}
+
+p > a:hover {
+    text-decoration: none;
+    color: #c6ac05;
+}
+
+p > a:active {
+    text-decoration: none;
+    color: #b8760b;
+}
+
+#heading {
+    text-align: center;
+}
+
+#content {
+    margin-top: 50px;
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+
+#content > div {
+    display: inline-block;
+    width: 550px;
+    margin-left: 30px;
+    text-align: left;
+    text-indent: 1em;
+    line-height: 1.4;
+}
+
+#frontimage {
+    margin-top: 40px;
+    text-align: center;
+}
