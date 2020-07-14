@@ -1,0 +1,16 @@
+{
+    "place": "Uppsala",
+    "title": "Upsala Stad : Copia utaf den År 1770 af Jonas Brolin utgifne Charta öfver Upsala Stad",
+    "year": "1770",
+    "projectedBy": "Palle Raabjerg",
+    "uploaded": "2020-07-09",
+    "sourceName": "ALVIN",
+    "sourceLink": "https://www.alvin-portal.org/alvin/imageViewer.jsf?dsId=ATTACHMENT-0001&pid=alvin-record:93579",
+    "center": [59.857447041693455, 17.63825420225507],
+    "bounds": [
+	[59.84847933620143, 17.660725559087318],
+	[59.86641474718548, 17.615782845422817]
+    ],
+    "minZoom": 14,
+    "maxZoom": 18
+}
