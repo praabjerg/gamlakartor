@@ -1,4 +1,4 @@
 (executables
- (libraries webmachine async core cohttp-async yojson)
+ (libraries webmachine lwt cohttp-lwt-unix yojson)
  (modules gkback)
  (names gkback))
