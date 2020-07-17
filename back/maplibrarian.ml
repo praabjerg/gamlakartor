@@ -1,6 +1,25 @@
+(* The Map Librarian builds and serves an index of projected maps for use
+ * with the Gamla Kartor web frontend.
+ * Copyright (C) 2020  Palle Raabjerg
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>. *)
+
 open Lwt.Infix
 open Yojson.Basic.Util
 open Cohttp_lwt_unix
+
+module StringMap = Map.Make(String)
 
 module Wm = struct
   module Rd = Webmachine.Rd
@@ -9,8 +28,6 @@ module Wm = struct
   end
   include Webmachine.Make(Cohttp_lwt_unix__Io)(UnixClock)
 end
-
-module StringMap = Map.Make(String)
 
 class gkback conf_init = object(self)
   inherit [Cohttp_lwt.Body.t] Wm.resource
@@ -54,13 +71,12 @@ let read_configuration configfolder configuration =
     let conflayeraddress = configuration |> member "layer" |> to_string in
     let layermeta = to_assoc (read_layer_metadata conflayeraddress) in
     let assocconf = to_assoc configuration in
-    (configfolder, Yojson.Basic.to_string (`Assoc (List.concat [layermeta; assocconf])))
+    (configfolder, `Assoc (List.concat [layermeta; assocconf]))
   else if conftype = "multi"
   then
     (* With a multi-layer configuration, we expect the necessary
      * meta-data to be written explicitly in the configuration *)
-    (configfolder, Yojson.Basic.to_string configuration)
-
+    (configfolder, configuration)
   else
     raise (Invalid_argument "Invalid configuration type. Must be either \"single\" or \"multi\"")
 ;;
@@ -77,11 +93,30 @@ let read_configurations (configurationpath) =
                 "" [configurationpath; "/"; configfolder; "/configuration.json"])))
       configdirlist
   in
+  (* Build and write slim index file for serving map index *)
+  let _ =
+    Yojson.Basic.to_file
+      (String.concat "" [webpath; "/confindex.json"])
+      (`List (List.map
+                (fun (configurationtuple) ->
+                  let (configfolder, configuration) = configurationtuple in
+                  let assocconf = to_assoc configuration in
+                  let slim =
+                    List.remove_assoc "layer"
+                      (List.remove_assoc "maxZoom"
+                         (List.remove_assoc "minZoom"
+                            (List.remove_assoc "bounds"
+                               (List.remove_assoc "center" assocconf))))
+                  in
+                  `Assoc (("id", `String configfolder)::slim)
+                )
+                configlist))
+  in
   (* Build map of json-formatted configurations *)
   List.fold_left
     (fun confmap configurationtuple ->
       let (configfolder, configuration) = configurationtuple in
-      StringMap.add configfolder configuration confmap)
+      StringMap.add configfolder (Yojson.Basic.to_string configuration) confmap)
     StringMap.empty
     configlist
 ;;
@@ -90,7 +125,7 @@ let main () =
   let port = 8080 in
   let configurations = read_configurations (String.concat "" [webpath; "/configurations"]) in
   let routes = [
-      ("/mapconf/:configuration", fun () -> new gkback configurations);
+      ("/confindex/:configuration", fun () -> new gkback configurations);
     ] in
   let callback (_ch, _conn) request body =
     let open Cohttp in

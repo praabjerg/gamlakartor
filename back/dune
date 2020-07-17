@@ -1,4 +1,4 @@
 (executables
- (libraries webmachine lwt cohttp-lwt-unix yojson)
- (modules gkback)
- (names gkback))
+ (libraries webmachine lwt cohttp-lwt-unix yojson markup)
+ (modules maplibrarian)
+ (names maplibrarian))
