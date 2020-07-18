@@ -18,8 +18,27 @@
 open Lwt.Infix
 open Yojson.Basic.Util
 open Cohttp_lwt_unix
+open Tyxml
 
 module StringMap = Map.Make(String)
+
+let assoclist_to_htmllist assoclist =
+  let translate_generic jsontitle htmlclass spantitle =
+    Html.([div ~a:[a_class [htmlclass]] [
+               span [txt spantitle];
+               p [txt (to_string jsontitle)]]])
+  in
+  let translate_date jsondate = 
+  let conftype = List.assoc "type" assoclist in
+  if conftype = "single"
+  then
+    List.fold_left
+      (fun htmllist keyvalue ->
+        let (key, value) = keyvalue in
+        
+
+  List.map (fun (key, value) ->
+    )
 
 module Wm = struct
   module Rd = Webmachine.Rd
@@ -93,6 +112,23 @@ let read_configurations (configurationpath) =
                 "" [configurationpath; "/"; configfolder; "/configuration.json"])))
       configdirlist
   in
+  (* Build and write map index html file *)
+  let htmllist =
+    List.Map
+      (fun (configurationtuple) ->
+        let (configfolder, configuration) = configurationtuple in
+        let title = configuration
+        Html.(li ~a:[a_class ["mapentry"]] [
+                  div ~a:[a_class ["entrytitle"]] [
+                      span [txt "Titel"];
+                      p [txt ]];
+                  div ~a:[a_class ["mapdate"]] [];
+                  div ~a:[a_class ["thumb"]] [];
+                  div ~a:[a_class ["credit"]] [];
+                  div ~a:[a_class ["gcp"]] [];
+                  div ~a:[a_class ["uploaded"]] [];
+                  div ~a:[a_class ["source"]] []
+      ]))
   (* Build and write slim index file for serving map index *)
   let _ =
     Yojson.Basic.to_file

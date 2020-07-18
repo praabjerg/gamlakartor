@@ -4,6 +4,6 @@
  (names maplibrarian))
 
 (executables
- (libraries tyxml)
+ (libraries tyxml tyxml-ppx)
  (modules testhtml)
  (names testhtml))
