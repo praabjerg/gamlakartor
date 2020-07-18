@@ -22,13 +22,17 @@ open Tyxml
 
 module StringMap = Map.Make(String)
 
-let assoclist_to_htmllist assoclist =
+let assoclist_to_htmllist configfolder assoclist =
   let translate_generic jsontitle htmlclass spantitle =
     Html.([div ~a:[a_class [htmlclass]] [
                span [txt spantitle];
                p [txt (to_string jsontitle)]]])
   in
-  let translate_date jsondate = 
+  let translate_thumb configfolder alt =
+    Html.([div ~a:[a_class ["thumb"]] [
+               a ~a:[a_href String.concat "" ["mapviewer.html?configuration="; configfolder]]
+                 [];
+               p [txt (to_string jsontitle)]]])
   let conftype = List.assoc "type" assoclist in
   if conftype = "single"
   then
