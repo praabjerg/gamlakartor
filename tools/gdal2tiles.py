@@ -2386,8 +2386,8 @@ class GDAL2Tiles(object):
         args['title'] = self.options.title.replace('"', '\\"')
         args['htmltitle'] = self.options.title
         args['south'], args['west'], args['north'], args['east'] = self.swne
-        args['centerlon'] = (args['north'] + args['south']) / 2.
-        args['centerlat'] = (args['west'] + args['east']) / 2.
+        args['centerlat'] = (args['north'] + args['south']) / 2.
+        args['centerlon'] = (args['west'] + args['east']) / 2.
         args['minzoom'] = self.tminz
         args['maxzoom'] = self.tmaxz
         args['beginzoom'] = self.tmaxz
@@ -2455,7 +2455,7 @@ class GDAL2Tiles(object):
 
         // Map
         var map = L.map('map', {
-            center: [%(centerlon)s, %(centerlat)s],
+            center: [%(centerlat)s, %(centerlon)s],
             zoom: %(beginzoom)s,
             minZoom: %(minzoom)s,
             maxZoom: %(maxzoom)s,
@@ -2764,8 +2764,8 @@ class GDAL2Tiles(object):
         args = {}
         args['title'] = self.options.title
         args['south'], args['west'], args['north'], args['east'] = self.swne
-        args['centerlon'] = (args['north'] + args['south']) / 2.
-        args['centerlat'] = (args['west'] + args['east']) / 2.
+        args['centerlat'] = (args['north'] + args['south']) / 2.
+        args['centerlon'] = (args['west'] + args['east']) / 2.
         args['minzoom'] = self.tminz
         args['maxzoom'] = self.tmaxz
         args['beginzoom'] = self.tmaxz
