@@ -9,25 +9,15 @@ type oldmap = {
 }
 
 type maplayer = {
-  place : string;
-  title : string;
-  year : string;
+  place: string;
+  title: string;
+  year: string;
   projectedBy : string;
-  uploaded : string;
-  sourceName : string;
-  sourceLink : string;
-  center : position;
-  bounds: bounds;
+  uploaded: string;
+  sourceName: string;
+  sourceLink: string;
+  copyright: string;
   minZoom: int;
   maxZoom: int;
-}
-
-type position = {
-  lat : float;
-  lon : float;
-}
-
-type bounds = {
-  nw: position;
-  se: position;
+  resolution: float;
 }

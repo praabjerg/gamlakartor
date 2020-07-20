@@ -10,10 +10,10 @@ let read_file filepath =
   filestring
 
 let read_mapconf configid = oldmap_of_string
-                           (read_file (String.concat "/" [webpath; "configurations"; configid; "configuration.json"]))
+                              (read_file (String.concat "/" [webpath; "configurations"; configid; "configuration.json"]))
 
 let read_maplayer layerid = maplayer_of_string
-                             (read_file (String.concat "/" [webpath; "layers"; layerid; "meta.json"]))
+                              (read_file (String.concat "/" [webpath; "layers"; layerid; "meta.json"]))
 
 let build_generic content htmlclass spantitle =
   Html.(div ~a:[a_class [htmlclass]] [
@@ -91,7 +91,6 @@ let writeindex () =
   let file_handle = open_out (String.concat "/" [webpath; "kartor.html"]) in
   let fmt = Format.formatter_of_out_channel file_handle in
   let _ = Html.pp () fmt (build_html ()) in
-  (*let _ = Format.fprintf fmt "%a@." (Html.pp ~indent:true ()) (build_html ()) in*)
   close_out file_handle
 
 let () = writeindex ()

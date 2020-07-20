@@ -1,3 +1,13 @@
+open Oldmap_j
+
+let read_file filepath =
+  let channel = open_in filepath in
+  let filestring = really_input_string channel (in_channel_length channel) in
+  let _ = close_in channel in
+  filestring
+
+let read_meta () = maplayer_of_string (read_file "meta.json")
+
 let translate_set labels values =
   let gcparray = Array.make 4 "" in
   let () = List.iter2 (fun label value ->
@@ -12,15 +22,14 @@ let translate_set labels values =
   String.concat " " ("-gcp"::(Array.to_list gcparray))
 
 
-let translate_and_warp () =
-  let _ = if Array.length Sys.argv < 5 then
-            let _ = print_string (String.concat " " ["Usage:"; Sys.argv.(0); "points_file input_mapimage output_tiff resolution\n"]) in
+let translate_and_warp meta =
+  let _ = if Array.length Sys.argv < 3 then
+            let _ = print_string (String.concat " " ["Usage:"; Sys.argv.(0); "points_file input_mapimage\n\nExecute in the directory where you want the layer. Make sure meta.json is present. The process will use /tmp as temporary storage for intermediate files.\n"]) in
             exit 0
   in
   let points_filename = Sys.argv.(1) in
   let mapimage_filename = Sys.argv.(2) in
-  let output_filename = Sys.argv.(3) in
-  let resolution = Sys.argv.(4) in
+  let resolution = (string_of_float meta.resolution) in
   let translate_prefix = "gdal_translate -of GTiff" in
   let points_channel = open_in points_filename in
   let points_csv = Csv.of_channel points_channel in
@@ -31,8 +40,20 @@ let translate_and_warp () =
   let translate_command = String.concat " " [translate_main; mapimage_filename; "/tmp/translated.tiff"] in
   let () = print_string (String.concat "" [translate_command; "\n"]) in
   let _ = Sys.command translate_command in
-  let warp_command = String.concat " " ["gdalwarp -tps -r bilinear -s_srs \"EPSG:4326\" -t_srs \"EPSG:3857\" -overwrite -tr"; resolution; resolution; "-co TILED=YES /tmp/translated.tiff"; output_filename] in
+  let warp_command = String.concat " " ["gdalwarp -tps -r bilinear -s_srs \"EPSG:4326\" -t_srs \"EPSG:3857\" -overwrite -tr"; resolution; resolution; "-co TILED=YES /tmp/translated.tiff"; "/tmp/projected.tiff"] in
   let () = print_string (String.concat "" [warp_command; "\n"]) in
   Sys.command warp_command
 
-let _ = translate_and_warp ()
+let convert_to_tiles meta =
+  let minzoom = (string_of_int meta.minZoom) in
+  let maxzoom = (string_of_int meta.maxZoom) in
+  let gdal2tiles_command = String.concat "" ["gdal2tiles.py --webviewer=oldmap --zoom="; minzoom; "-"; maxzoom; " /tmp/projected.tiff ./"] in
+  let () = print_string (String.concat "" [gdal2tiles_command; "\n"]) in
+  Sys.command gdal2tiles_command
+
+let main () =
+  let meta = read_meta() in
+  let _ = translate_and_warp meta in
+  convert_to_tiles meta
+
+let _ = main ()
