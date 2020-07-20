@@ -21,6 +21,10 @@ body {
     color: #ffe648;
 }
 
+#heading > nav > ul {
+    display: flex;
+}
+
 .menuitem {
     display: inline-block;
     margin-left: 20px;

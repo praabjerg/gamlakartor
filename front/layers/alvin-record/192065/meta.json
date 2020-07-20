@@ -6,11 +6,20 @@
     "uploaded": "2020-07-09",
     "sourceName": "ALVIN",
     "sourceLink": "https://www.alvin-portal.org/alvin/imageViewer.jsf?dsId=ATTACHMENT-0001&pid=alvin-record:192065",
-    "center": [59.325784367129785, 18.06911605929536],
-    "bounds": [
-	[59.27447070569907, 18.148122888533674],
-	[59.37709802856049, 17.99010923005705]
-    ],
+    "center": {
+	"lat": 59.325784367129785,
+	"lon": 18.06911605929536
+    },
+    "bounds": {
+	"nw": {
+	    "lat": 59.27447070569907,
+	    "lon": 18.148122888533674
+	},
+	"se": {
+	    "lat": 59.37709802856049,
+	    "lon": 17.99010923005705
+	}
+    },
     "minZoom": 13,
     "maxZoom": 16
 }

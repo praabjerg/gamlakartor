@@ -1,4 +1,5 @@
 {
-    "type": "single",
+    "conftype": "single",
+    "thumb_alt": "Kartutsnitt över Uppsala Slott",
     "layer": "alvin-record/93579"
 }

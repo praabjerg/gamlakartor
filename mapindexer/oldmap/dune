@@ -1,0 +1,20 @@
+(library
+(modules oldmap_t)
+(name oldmap_t))
+
+(library
+(libraries oldmap_t biniou yojson atdgen-runtime)
+(modules oldmap_j)
+(name oldmap_j))
+
+(rule
+   (targets oldmap_t.ml
+      oldmap_t.mli)
+   (deps oldmap.atd)
+   (action (run atdgen -t %{deps})))
+
+(rule
+   (targets oldmap_j.ml
+      oldmap_j.mli)
+   (deps oldmap.atd)
+   (action (run atdgen -j -j-std %{deps})))

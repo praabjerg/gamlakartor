@@ -1,9 +1,0 @@
-(executables
- (libraries webmachine lwt cohttp-lwt-unix yojson tyxml)
- (modules maplibrarian)
- (names maplibrarian))
-
-(executables
- (libraries tyxml tyxml-ppx)
- (modules testhtml)
- (names testhtml))

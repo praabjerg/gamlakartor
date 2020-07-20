@@ -1,4 +1,5 @@
 {
-    "type": "single",
+    "conftype": "single",
+    "thumb_alt": "Kartutsnitt över Gamla Stan",
     "layer": "alvin-record/192065"
 }

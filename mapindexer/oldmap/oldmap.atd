@@ -1,0 +1,33 @@
+type oldmap = {
+  ?place: string option;
+  ?title: string option;
+  ?uploaded: string option;
+  conftype: string;
+  thumb_alt: string;
+  ?layer: string option;
+  ?layers: (string list) option;
+}
+
+type maplayer = {
+  place : string;
+  title : string;
+  year : string;
+  projectedBy : string;
+  uploaded : string;
+  sourceName : string;
+  sourceLink : string;
+  center : position;
+  bounds: bounds;
+  minZoom: int;
+  maxZoom: int;
+}
+
+type position = {
+  lat : float;
+  lon : float;
+}
+
+type bounds = {
+  nw: position;
+  se: position;
+}
