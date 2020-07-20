@@ -1,4 +1,5 @@
 (executables
  (libraries tyxml oldmap_t oldmap_j)
  (modules mapindexer)
- (names mapindexer))
+ (names mapindexer)
+ (promote (until-clean)))
