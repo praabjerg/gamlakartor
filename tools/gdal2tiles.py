@@ -1827,9 +1827,9 @@ class GDAL2Tiles(object):
                         f.write(self.generate_openlayers().encode('utf-8'))
 
         # Generate tilemapresource.xml.
-        if not self.options.xyz and (not self.options.resume or not os.path.exists(os.path.join(self.output_folder, 'tilemapresource.xml'))):
-            with open(os.path.join(self.output_folder, 'tilemapresource.xml'), 'wb') as f:
-                f.write(self.generate_tilemapresource().encode('utf-8'))
+        #if not self.options.xyz and (not self.options.resume or not os.path.exists(os.path.join(self.output_folder, 'tilemapresource.xml'))):
+        #    with open(os.path.join(self.output_folder, 'tilemapresource.xml'), 'wb') as f:
+        #        f.write(self.generate_tilemapresource().encode('utf-8'))
 
         if self.kml:
             # TODO: Maybe problem for not automatically generated tminz
