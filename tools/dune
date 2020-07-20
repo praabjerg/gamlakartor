@@ -3,3 +3,9 @@
  (modules mapindexer)
  (names mapindexer)
  (promote (until-clean)))
+
+(executables
+ (libraries csv)
+ (modules translate_and_warp)
+ (names translate_and_warp)
+ (promote (until-clean)))
