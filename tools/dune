@@ -6,6 +6,6 @@
 
 (executables
  (libraries csv oldmap_t oldmap_j)
- (modules translate_and_warp)
- (names translate_and_warp)
+ (modules generate_tiles)
+ (names generate_tiles)
  (promote (until-clean)))
