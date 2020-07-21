@@ -2786,7 +2786,7 @@ class GDAL2Tiles(object):
             "lat": %(south)s,
             "lon": %(east)s
         }
-    },
+    }
 }""" % args    # noqa
 
         return s
