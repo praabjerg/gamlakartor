@@ -16,7 +16,8 @@ type maplayer = {
   uploaded: string;
   sourceName: string;
   sourceLink: string;
-  copyright: string;
+  licence: string;
+  licenceLink: string;
   minZoom: int;
   maxZoom: int;
   resolution: float;

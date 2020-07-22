@@ -108,7 +108,13 @@ $.get('configurations/' + configurationName + '/configuration.json')
 
         var leafLayers = layers.map(function(layer, index) {
             const layerid = layerids[index];
-            return L.tileLayer('layers/' + layerid + '/{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: "", minZoom: layer.meta.minZoom, maxZoom: layer.meta.maxZoom});
+            const sourceLink = "<a href=\"" + layer.meta.sourceLink + "\">" + layer.meta.sourceName + "</a>";
+            var licence = layer.meta.licence;
+            if (layer.meta.licenceLink !== "") {
+                licence = '<a href="' + layer.meta.licenceLink + '">' + layer.meta.licence + '</a>';
+            }
+            const attribution = "Overlay source: " + sourceLink + ". Licence: " + licence;
+            return L.tileLayer('layers/' + layerid + '/{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: attribution, minZoom: layer.meta.minZoom, maxZoom: layer.meta.maxZoom});
         });
 
         // Map
