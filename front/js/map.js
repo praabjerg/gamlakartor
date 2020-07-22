@@ -159,7 +159,7 @@ $.get('configurations/' + configurationName + '/configuration.json')
 
         // Fit to overlay bounds (SW and NE points with (lat, lon))
         const bounds = [[initLayer.positioning.bounds.nw.lat, initLayer.positioning.bounds.nw.lon],
-                        [initLayer.positioning.bounds.se.lat, initLayer.positioning.bounds.nw.lon]];
+                        [initLayer.positioning.bounds.se.lat, initLayer.positioning.bounds.se.lon]];
         console.log(center);
         console.log(bounds);
         map.fitBounds(bounds);
