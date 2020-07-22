@@ -81,15 +81,15 @@ $.get('configurations/' + configurationName + '/configuration.json')
         var maxZoomMap = 0;
         var mapTitle = '';
         layers.forEach(function(layer) {
-            if (layer.minZoom < minZoomMap) {
-                minZoomMap = layer.minZoom;
+            if (layer.meta.minZoom < minZoomMap) {
+                minZoomMap = layer.meta.minZoom;
             }
-            if (layer.maxZoom > maxZoomMap) {
-                maxZoomMap = layer.maxZoom;
+            if (layer.meta.maxZoom > maxZoomMap) {
+                maxZoomMap = layer.meta.maxZoom;
             }
         });
         if (mapConfiguration.conftype === 'single') {
-            mapTitle = initLayer.title;
+            mapTitle = initLayer.meta.title;
         } else {
             mapTitle = mapConfiguration.title;
         }
@@ -108,12 +108,13 @@ $.get('configurations/' + configurationName + '/configuration.json')
 
         var leafLayers = layers.map(function(layer, index) {
             const layerid = layerids[index];
-            return L.tileLayer('layers/' + layerid + '/{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: "", minZoom: layer.minZoom, maxZoom: layer.maxZoom});
+            return L.tileLayer('layers/' + layerid + '/{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: "", minZoom: layer.meta.minZoom, maxZoom: layer.meta.maxZoom});
         });
 
         // Map
+        const center = [initLayer.positioning.center.lat, initLayer.positioning.center.lon];
         var map = L.map('map', {
-            center: [initLayer.positioning.center.lat, initLayer.positioning.center.lon],
+            center: center,
             zoom: initLayer.meta.maxZoom,
             minZoom: minZoomMap,
             maxZoom: maxZoomMap,
@@ -157,6 +158,9 @@ $.get('configurations/' + configurationName + '/configuration.json')
         L.control.layers(basemaps, overlaymaps, {collapsed: false}).addTo(map);
 
         // Fit to overlay bounds (SW and NE points with (lat, lon))
-        map.fitBounds([[initLayer.positioning.bounds.nw.lat, initLayer.positioning.bounds.nw.lon],
-                       [initLayer.positioning.bounds.se.lat, initLayer.positioning.bounds.nw.lon]]);
+        const bounds = [[initLayer.positioning.bounds.nw.lat, initLayer.positioning.bounds.nw.lon],
+                        [initLayer.positioning.bounds.se.lat, initLayer.positioning.bounds.nw.lon]];
+        console.log(center);
+        console.log(bounds);
+        map.fitBounds(bounds);
     });
