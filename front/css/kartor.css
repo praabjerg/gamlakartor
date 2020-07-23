@@ -9,26 +9,59 @@
     text-align: left;
 }
 
-.mapentry {
+.layerlist > li {
+    overscroll-behavour-x: none;
+}
+
+.layerentry {
+    flex-wrap: nowrap;
+}
+
+.layerentry > div > p {
+    font-size: 2.0vw;
+}
+
+.entry {
+    display: flex;
     width: 100%;
     font-size: 2.5vw;
-    display: flex;
+}
+
+.mapentry {
     flex-wrap: wrap;
     margin-top: 1em;
 }
 
-.mapentry > div > span:first-child {
-    display: inline-block;
-    font-family: 'Special Elite', cursive;
-    font-size: 1.7vw;
-    margin-left: 0.2em;
-    margin-top: 0.2em;
+.layerentry > div > span:first-child {
+    top: 20%;
 }
 
-.mapentry > div > p {
+.layerentry > .gcp > p {
+    font-size: 2.6vw;
+}
+
+.entry > div > span:first-child {
+    display: inline-block;
+    position: relative;
+    top: -5%;
+    font-family: 'Special Elite', cursive;
+    font-size: 1.5vw;
+    margin-left: 0.2em;
+}
+
+.entry > div > p {
     font-family: 'Macondo Swash Caps', cursive;
     margin-left: 0.2em;
     margin-bottom: 0.2em;
+}
+
+.layerlist {
+    width: 100%;
+}
+
+.layertitle {
+    width: 30%;
+    background-color: #400000;
 }
 
 .entrytitle {

@@ -31,6 +31,8 @@ let read_mapconf configid = oldmap_of_string
 let read_maplayer layerid = maplayer_of_string
                               (read_file (String.concat "/" [webpath; "layers"; layerid; "meta.json"]))
 
+let read_maplayers layerids = List.map read_maplayer layerids
+
 let build_generic content htmlclass spantitle =
   Html.(div ~a:[a_class [htmlclass]] [
             span [txt spantitle];
@@ -55,7 +57,7 @@ let build_source sourcelink sourcename =
   ])
 
 let build_entry_single configid config layerid layer =
-  Html.(li ~a:[a_class ["mapentry"]] [
+  Html.(li ~a:[a_class ["mapentry"; "entry"]] [
             build_thumb configid config.thumb_alt;
             build_generic layer.title "entrytitle" "Titel";
             build_source layer.sourceLink layer.sourceName;
@@ -65,14 +67,44 @@ let build_entry_single configid config layerid layer =
             build_gcp layerid;
   ])
 
+let build_entry_multi configid config layerids layers =
+  match config.multititle with
+  | Some multititle ->
+     Html.(li ~a:[a_class ["mapentry"; "entry"]] [
+               build_thumb configid config.thumb_alt;
+               build_generic multititle "entrytitle" "Titel";
+               ul ~a:[a_class ["layerlist"]]
+                 (List.map2 (fun layerid layer ->
+                      li ~a:[a_class["layerentry"; "entry"]] [
+                          (let layertitle = match layer.layerTitle with
+                             | Some title ->
+                                title
+                             | None ->
+                                String.concat "" [layer.place; ", "; layer.year]
+                           in
+                           build_generic layertitle "layertitle" "Skikt");
+                          build_source layer.sourceLink layer.sourceName;
+                          build_generic layer.year "mapyear" "Årstal";
+                          build_generic layer.projectedBy "credit" "Projekterad av";
+                          build_generic layer.uploaded "uploaded" "Uppladdad";
+                          build_gcp layerid;
+                    ])
+                    layerids layers)
+     ])
+  | _ -> failwith (String.concat " " ["Multi map-configuration"; configid; "missing \"multititle\" field."])
+
 let build_entry configid =
   let map_config = read_mapconf configid in
   if map_config.conftype = "single" then
     match map_config.layer with
     | Some layerid -> build_entry_single configid map_config layerid (read_maplayer layerid)
     | _ -> failwith (String.concat " " ["Single map-configuration"; configid; "missing layer reference."])
+  else if map_config.conftype = "multi" then
+    match map_config.layers with
+    | Some layerids -> build_entry_multi configid map_config layerids (read_maplayers layerids)
+    | _ -> failwith (String.concat " " ["Single map-configuration"; configid; "missing layer reference."])
   else
-    failwith "Only single map configurations fully implemented."
+    failwith "Only \"single\" and \"multi\" map type configurations possible."
 
 let build_index () =
   let configdirlist = Array.to_list (Sys.readdir (String.concat "/" [webpath; "configurations"])) in

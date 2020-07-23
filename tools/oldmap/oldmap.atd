@@ -1,11 +1,10 @@
 type oldmap = {
   ?place: string option;
-  ?title: string option;
-  ?uploaded: string option;
+  ?multititle: string option;
   conftype: string;
   thumb_alt: string;
   ?layer: string option;
-  ?layers: (string list) option;
+  ?layers: string list option;
 }
 
 type maplayer = {
