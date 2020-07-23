@@ -11,13 +11,14 @@ type oldmap = {
 type maplayer = {
   place: string;
   title: string;
+  ?layerTitle: string option;
   year: string;
   projectedBy : string;
   uploaded: string;
   sourceName: string;
   sourceLink: string;
   licence: string;
-  licenceLink: string;
+  ?licenceLink: string option;
   minZoom: int;
   maxZoom: int;
   resolution: float;

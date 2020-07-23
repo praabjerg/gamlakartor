@@ -108,12 +108,12 @@ $.get('configurations/' + configurationName + '/configuration.json')
 
         var leafLayers = layers.map(function(layer, index) {
             const layerid = layerids[index];
-            const sourceLink = "<a href=\"" + layer.meta.sourceLink + "\">" + layer.meta.sourceName + "</a>";
+            const sourceLink = '<a href="' + layer.meta.sourceLink + '">' + layer.meta.sourceName + '</a>';
             var licence = layer.meta.licence;
-            if (layer.meta.licenceLink !== "") {
+            if (layer.meta.licenceLink !== undefined) {
                 licence = '<a href="' + layer.meta.licenceLink + '">' + layer.meta.licence + '</a>';
             }
-            const attribution = "Overlay source: " + sourceLink + ". Licence: " + licence;
+            const attribution = "Overlay source: " + sourceLink + ", Licence: " + licence;
             return L.tileLayer('layers/' + layerid + '/{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: attribution, minZoom: layer.meta.minZoom, maxZoom: layer.meta.maxZoom});
         });
 
@@ -132,7 +132,11 @@ $.get('configurations/' + configurationName + '/configuration.json')
         map.addLayer(leafLayers[0]);
         var overlaymaps = {};
         leafLayers.forEach(function(leafLayer, index) {
-            overlaymaps[layers[index].meta.title] = leafLayer;
+            var key = layers[index].meta.place + ", " + layers[index].meta.year;
+            if (layers[index].meta.layerTitle !== undefined) {
+                key = layers[index].meta.layerTitle;
+            }
+            overlaymaps[key] = leafLayer;
         });
 
         // Title
