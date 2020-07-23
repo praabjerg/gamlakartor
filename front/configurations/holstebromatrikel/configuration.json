@@ -1,0 +1,8 @@
+{
+    "place": "Holstebro",
+    "multititle": "Holstebro Bygrunde 1870-1926",
+    "conftype": "multi",
+    "thumb_alt": "Kartutsnitt över Holstebro Kyrka",
+    "layers": ["geodatastyrelsen/7643",
+               "geodatastyrelsen/7649"]
+}
