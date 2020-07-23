@@ -4,85 +4,72 @@
 }
 
 #maplist > ul {
-    width: 600px;
+    width: 80%;
     display: inline-block;
     text-align: left;
 }
 
 .mapentry {
-    position: relative;
-    width: 600px;
-    height: 120px;
-    margin-top: 20px;
-    display: inline-block;
-}
-
-.mapentry > div:not(.thumb) {
-    position: absolute;
-    height: 40px;
+    width: 100%;
+    font-size: 2.5vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1em;
 }
 
 .mapentry > div > span:first-child {
+    display: inline-block;
     font-family: 'Special Elite', cursive;
-    font-size: 14px;
-    margin-left: 4px;
-    margin-top: 10px;
+    font-size: 1.7vw;
+    margin-left: 0.2em;
+    margin-top: 0.2em;
 }
 
 .mapentry > div > p {
     font-family: 'Macondo Swash Caps', cursive;
-    font-size: 18px;
-    margin-left: 5px;
+    margin-left: 0.2em;
+    margin-bottom: 0.2em;
 }
 
 .entrytitle {
-    left: 0px;
-    width: 450px;
+    width: 85%;
     background-color: #500000;
 }
 
 .mapyear {
-    right: 0px;
-    width: 150px;
-    background-color: #440000;
+    width: 10%;
+    background-color: #400000;
 }
 
 .thumb {
-    position: absolute;
-    top: 40px;
-    width: 100px;
-    height: 80px;
+    width: 15%;
+}
+
+.thumb > a > img {
+    width: 100%;
 }
 
 .credit {
-    top: 40px;
-    left: 100px;
-    width: 350px;
-    background-color: #380000;
-}
-
-.gcp {
-    top: 40px;
-    right: 0px;
-    width: 150px;
-    margin-top: 5px;
-    background-color: #330000;
-}
-
-.gcp > p > a {
-    font-size: 25px;
-}
-
-.uploaded {
-    bottom: 0px;
-    left: 100px;
-    width: 150px;
+    width: 30%;
     background-color: #500000;
 }
 
+.gcp {
+    width: 10%;
+    background-color: #330000;
+}
+
+.gcp > p {
+    font-size: 1.2em;
+    margin-top: 0.3em;
+}
+
+.uploaded {
+    width: 20%;
+    background-color: #400000;
+}
+
 .source {
-    bottom: 0px;
-    right: 0px;
-    width: 350px;
-    background-color: #440000;
+    width: 30%;
+    background-color: #330000;
 }

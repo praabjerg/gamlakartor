@@ -56,13 +56,13 @@ let build_source sourcelink sourcename =
 
 let build_entry_single configid config layerid layer =
   Html.(li ~a:[a_class ["mapentry"]] [
-            build_generic layer.title "entrytitle" "Titel";
-            build_generic layer.year "mapyear" "Årstal";
             build_thumb configid config.thumb_alt;
-            build_generic layer.projectedBy "credit" "Projekterad av";
-            build_gcp layerid;
-            build_generic layer.uploaded "uploaded" "Uppladdad";
+            build_generic layer.title "entrytitle" "Titel";
             build_source layer.sourceLink layer.sourceName;
+            build_generic layer.year "mapyear" "Årstal";
+            build_generic layer.projectedBy "credit" "Projekterad av";
+            build_generic layer.uploaded "uploaded" "Uppladdad";
+            build_gcp layerid;
   ])
 
 let build_entry configid =
