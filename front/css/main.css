@@ -14,16 +14,23 @@ body {
 #heading > nav {
     display: inline-block;
     font-family: 'Grenze Gotisch', cursive;
-    font-size: 35px;
-    height: 50px;
+    font-size: 5vw;
+    width: 65%;
     background-color: #b8760b;
-    padding: 5px 20px 0px 0px;
+    padding: 1% 2% 1% 1%;
     color: #ffe648;
+}
+
+#heading > nav > ul {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
 }
 
 .menuitem {
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 2%;
+    white-space: nowrap;
 }
 
 .menuitem > a {
@@ -48,7 +55,7 @@ body {
 
 h1 {
     font-family: 'Grenze Gotisch', cursive;
-    font-size: 80px;
+    font-size: 9vw;
     color: #b8760b;
 }
 
@@ -78,15 +85,16 @@ p > a:active {
 
 #content {
     margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
     font-family: 'Macondo Swash Caps', cursive;
-    font-size: 30px;
+    font-size: 3vw;
     text-align: center;
 }
 
 #content > div {
     display: inline-block;
-    width: 550px;
-    margin-left: 30px;
     text-align: left;
     text-indent: 1em;
     line-height: 1.4;
@@ -94,5 +102,7 @@ p > a:active {
 
 #frontimage {
     margin-top: 40px;
+    max-width: 100%;
+    height: auto;
     text-align: center;
 }

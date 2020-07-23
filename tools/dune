@@ -1,0 +1,11 @@
+(executables
+ (libraries tyxml oldmap_t oldmap_j)
+ (modules mapindexer)
+ (names mapindexer)
+ (promote (until-clean)))
+
+(executables
+ (libraries csv oldmap_t oldmap_j)
+ (modules generate_tiles)
+ (names generate_tiles)
+ (promote (until-clean)))
