@@ -3,6 +3,7 @@
     "multititle": "Holstebro Bygrunde 1870-1926",
     "conftype": "multi",
     "thumb_alt": "Kartutsnitt över Holstebro Kyrka",
+    "attribution": "Overlay source: <a href=\"https://hkpn.gst.dk/\">Geodatastyrelsen</a>, Holstebro Bygrunde.<br><a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7643&elav=2007151\">Plan 1</a>, <a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7644&elav=2007151\">Plan 2</a>, <a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7645&elav=2007151\">Plan 3</a>, <a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7646&elav=2007151\">Plan 4</a>, <a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7647&elav=2007151\">Plan 5</a>, <a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7648&elav=2007151\">Plan 6</a>, <a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7649&elav=2007151\">Plan 7</a>, <a href=\"https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7650&elav=2007151\">Plan 8</a>.<br>Licence: <a href=\"https://gst.dk/om-os/se-paa-kort/historiske-kort/\">Attribution required</a>.",
     "layers": ["geodatastyrelsen/7643",
                "geodatastyrelsen/7649"]
 }

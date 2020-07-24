@@ -1,15 +1,15 @@
 {
     "place": "Holstebro",
     "title": "Holstebro Købstads Bygrunde; Hjerm Herred; Ringkjøbing Amt; Plan 7",
-    "layerTitle": "Plan 7",
+    "layerTitle": "Plan 7, 1925",
     "year": "1925",
     "projectedBy": "Palle Raabjerg",
-    "uploaded": "2020-07-23",
+    "uploaded": "2020-07-24",
     "sourceName": "Geodatastyrelsen",
     "sourceLink": "https://hkpn.gst.dk/mapviewer.aspx?type=o1k_oekort&id=7649&elav=2007151",
     "licence": "Attribution Required",
     "licenceLink": "https://gst.dk/om-os/se-paa-kort/historiske-kort/",
-    "resolution": 1,
-    "minZoom": 16,
+    "resolution": 0.2,
+    "minZoom": 15,
     "maxZoom": 19
 }

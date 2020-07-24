@@ -3,6 +3,7 @@ type oldmap = {
   ?multititle: string option;
   conftype: string;
   thumb_alt: string;
+  ?attribution: string option;
   ?layer: string option;
   ?layers: string list option;
 }
