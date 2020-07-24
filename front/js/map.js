@@ -91,7 +91,7 @@ $.get('configurations/' + configurationName + '/configuration.json')
         if (mapConfiguration.conftype === 'single') {
             mapTitle = initLayer.meta.title;
         } else {
-            mapTitle = mapConfiguration.title;
+            mapTitle = mapConfiguration.multititle;
         }
         // Base layers
         //  .. OpenStreetMap
