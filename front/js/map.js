@@ -133,6 +133,7 @@ $.get('configurations/' + configurationName + '/configuration.json')
             layers: [osm]
         });
 
+        // Zoom control
         var zoom = L.control.zoom({position: 'bottomleft'});
         zoom.addTo(map);
 
@@ -189,6 +190,14 @@ $.get('configurations/' + configurationName + '/configuration.json')
 
         // Add base layers
         L.control.layers(basemaps, overlaymaps, {collapsed: false}).addTo(map);
+
+        // Opacity control
+        var opacitySlider = new L.Control.opacitySlider({position: 'topright'});
+        map.addControl(opacitySlider);
+
+        leafLayers.forEach(function(leafLayer, index) {
+            opacitySlider.addOpacityLayer(leafLayer);
+        });
 
         // Fit to overlay bounds (SW and NE points with (lat, lon))
         const bounds = [[initLayer.positioning.bounds.nw.lat, initLayer.positioning.bounds.nw.lon],
